@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title th:text="kondate登録"></title>
+	<link rel="stylesheet" type="text/css" th:href="@{/style.css}">
+</head>
+<body>
+	<div th:text="kondate登録" class="title"></div>
+	
+	<form th:action="@{/kondateInsert}" th:object="${kondate}" method="post">
+		<p>
+			date
+			<input type="text" th:field="*{date}" />
+		</p>
+		<p>
+			memo
+			<input type="text" th:field="*{memo}" />
+		</p>
+		
+		<input type="submit" value="送信" />
+	</form>
+	<p><a th:href="@{/kondateList}">kondateListへ戻る</a></p>
+	
+</body>
+</html>

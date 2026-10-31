@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title th:text="team詳細"></title>
+	<link rel="stylesheet" type="text/css" th:href="@{/style.css}">
+</head>
+<body>
+	<div th:text="team詳細" class="title"></div>
+	<div th:object="${team}">
+		<p th:text="*{'teamid: ' + teamid}"></p>
+		<p th:text="*{'teamname: ' + teamname}"></p>
+		<p th:text="*{'country: ' + country}"></p>
+	</div>
+	
+	<p><a th:href="@{/playerWrite/{x}(x=${team.teamid})}">player登録</a></p>
+	
+	<p>
+		player一覧
+		<table th:if="${list.size() > 0}" border="1">
+			<tr>
+				<th>playerid</th>
+				<th>playername</th>
+				<th>type</th>
+				<th>詳細</th>
+				<th>更新</th>
+				<th>削除</th>
+			</tr>
+			<tr th:each="e:${list}">
+				<td th:text="${e.playerid}"></td>
+				<td th:text="${e.playername}"></td>
+				<td th:text="${e.type}"></td>
+				<td><a th:href="@{/playerDetail/{x}(x=${e.playerid})}">表示</a></td>
+				<td><a th:href="@{/playerUpdate/{x}(x=${e.playerid})}">更新</a></td>
+				<td><a th:href="@{/playerDelete/{x}(x=${e.playerid})}">削除</a></td>
+			</tr>
+		</table>
+
+	</p>
+	
+	<p><a th:href="@{/teamList}">teamListへ戻る</a></p>
+	
+</body>
+</html>

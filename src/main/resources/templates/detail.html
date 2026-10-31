@@ -1,21 +1,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css"
-                                                    th:href="@{/style.css}">
+	<meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" th:href="@{/style.css}">
 </head>
 <body>
-    <div th:text="詳細" class="title"></div>
-    <div th:object="${form}">
-<!--        <p th:text="*{'日　　付:' + date}"></p>-->
+	<div th:text="詳細" class="title"></div>
+	<div th:object="${form}">
+		<p th:text="*{'日　　付:' + date}"></p>
 		<p th:text="'日　　付:' + *{date}"></p>
-        <p th:text="*{'タイトル:' + title}"></p>
+		<p th:text="*{'タイトル:' + title}"></p>
 		<p th:text="*{'カテゴリ:' + category}"></p>
 		<p th:text="*{'タ イ プ:' + type}"></p>
-        <p th:text="*{'メ　　モ:' + memo}"></p>
+<!--		<p th:text="*{'タイプ２:' + type2}"></p>-->
+		<p th:text="*{'メ　　モ:' + memo}"></p>
 		<img th:src="*{'/img/' + filename}" class="img">
-    </div>
-    <a th:href="@{/top}">トップへ戻る</a>
+<!--		<img th:src="@{'/img/' + ${form.filename}}" class="img">-->
+<!--		<img th:src="@{/img/catA.png}" style="width: 10%;" />-->
+		<img th:src="${'/img/' + form.filename}" class="img">
+	
+	</div>
+	<a th:href="@{/top}">トップへ戻る</a>
 </body>
 </html>

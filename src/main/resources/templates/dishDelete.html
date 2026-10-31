@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" th:href="@{/style.css}">
+	<title th:text="dish削除確認"></title>
+</head>
+<body>
+	<div th:text="dish削除確認" class="title"></div>
+	<div th:object="${dish}">
+		<p>
+			次のデータを削除してよろしいですか？
+		</p>
+		<p th:text="*{'dishid: ' + dishid}"></p>
+		<p th:text="*{'dishname: ' + dishname}"></p>
+		<p th:text="*{'type: ' + type}"></p>
+		<form th:action="@{/dishRemove}" method="post">
+			<input type="hidden" th:field="*{dishid}" />
+			<input type="submit" value="削除" />
+		</form>
+	</div>
+	<p><a th:href="@{/dishList}">dishListへ戻る</a></p>
+	
+</body>
+</html>
+

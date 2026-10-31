@@ -8,13 +8,13 @@
 <body>
 	<div th:text="top" class="title"></div>
 	<form th:action="@{/search}" method="GET">
-<!--		<p>タイトル検索<input type="text" name="keyword">-->
-			<!--↓2026/10/25 検索欄の初期値追加 -->
-<!--		<p>タイトル検索<input type="text" th:field="${keyword}">-->
+<!--	<p>タイトル検索<input type="text" name="keyword">-->
+		<!--↓2026/10/25 検索欄の初期値追加 -->
+<!--	<p>タイトル検索<input type="text" th:field="${keyword}">-->
 		<!-- ↑これではうまくいかず -->
 		<p>タイトル検索<input type="text" name="keyword" th:value="${keyword}">
 		<!-- ↑これでうまくいった -->
-			<input type="submit" value="検索">
+		<input type="submit" value="検索">
 		</p>
 	</form>
 	
@@ -49,6 +49,7 @@
 	<!--2026/06/25-->
 	<p><a th:href="@{/bulkdelete}">一括削除</a></p>
 	
+	
 	<!--2026/06/16-->
 	<p><a th:href="@{/csv}">CSVアップロード・ダウンロード</a></p>
 	
@@ -69,6 +70,34 @@
 <!--		<input type="submit" value="ダウンロード">-->
 <!--	</form>-->
 	
+	<hr>
+	
+	<!--2026/06/16-->
+	<p><a th:href="@{/calendar}">カレンダー表示</a></p>
+	
+	<hr>
+	
+	<!--2026/06/18-->
+	<p>パターン4</p>
+	<p><a th:href="@{/dishList}">dishListへ</a></p>
+	<p><a th:href="@{/kondateList}">kondateListへ</a></p>
+	
+	<hr>
+	
+	<!--2026/06/20-->
+	<p>パターン3</p>
+	<p><a th:href="@{/teamList}">teamListへ</a></p>
+	
+	<hr>
+	
+	<!--206/06/21-->
+	<p><a th:href="@{/delivery/1/2}">値の受け渡し</a></p>
+	<p><button type="button" th:onclick="location.href='/delivery/1/2'">値の受け渡し</button></p>
+	<p><input type="button" th:onclick="location.href='/delivery/1/2'" value="値の受け渡し"></p>
+	
+	<hr>
+	
+	<hr>
 	<p><a th:href="@{/top}">トップへ戻る</a></p>
 	
 </body>

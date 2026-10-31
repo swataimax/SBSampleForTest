@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title th:text="player詳細"></title>
+	<link rel="stylesheet" type="text/css" th:href="@{/style.css}">
+</head>
+<body>
+	<div th:text="player詳細" class="title"></div>
+	<div th:object="${player}">
+		<p th:text="*{'playerid: ' + playerid}"></p>
+		<p th:text="*{'playername: ' + playername}"></p>
+		<p th:text="*{'type: ' + type}"></p>
+		<p th:text="*{'teamid: ' + teamid}"></p>
+	</div>
+	
+	<p><a th:href="@{/teamDetail/{x}(x=${player.teamid})}">teamDetailへ戻る</a></p>
+	
+</body>
+</html>

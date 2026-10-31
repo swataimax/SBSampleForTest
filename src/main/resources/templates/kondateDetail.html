@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title th:text="kondate詳細"></title>
+	<link rel="stylesheet" type="text/css" th:href="@{/style.css}">
+</head>
+<body>
+	<div th:text="kondate詳細" class="title"></div>
+	<div th:object="${kondate}">
+		<p th:text="*{'date: ' + date}"></p>
+		<p th:text="*{'memo: ' + memo}"></p>
+		<p th:text="*{'dishids: ' + dishids}"></p>
+		
+		<!--2026/06/20-->
+		<table border="1">
+			<tr>
+				<th>dishid</th>
+				<th>type</th>
+				<th>dishname</th>
+			</tr>
+			<tr th:each="e:${list}">
+				<td th:text="${e.dishid}"></td>
+				<td th:text="${e.type}"></td>
+				<td th:text="${e.dishname}"></td>
+			</tr>
+		</table>
+	</div>
+	
+	<p><a th:href="@{/kondateList}">kondateListへ戻る</a></p>
+	
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title th:text="kondate更新"></title>
+	<link rel="stylesheet" type="text/css" th:href="@{/style.css}" >
+</head>
+<body>
+	<div th:text="kondate更新" class="title"></div>
+	<form th:action="@{/kondateInsert}" th:object="${kondate}" method="post">		
+		<p>
+			date
+			<input type="text" th:field="*{date}" />
+		</p>
+		<p>
+			memo
+			<input type="text" th:field="*{memo}" />
+		</p>
+		<!--2026/06/20-->
+		<p>
+			dishids
+			<label th:text="*{dishids}" />
+		</p>
+		<!--2026/06/20-->
+		<p>
+			<a th:href="@{/dishSelect/{x}(x=${kondate.kondateid})}">dish選択</a>
+		</p>
+		<!--2026/06/20-->
+		<table border="1">
+			<tr>
+				<th>dishid</th>
+				<th>type</th>
+				<th>dishname</th>
+				<th>キャンセル</th>
+			</tr>
+			<tr th:each="e:${list}">
+				<td th:text="${e.dishid}"></td>
+				<td th:text="${e.type}"></td>
+				<td th:text="${e.dishname}"></td>
+				<td><a th:href="@{/dishCancel/{x}/{y}(x=${e.dishid},y=*{kondateid})}">キャンセル</a></td>
+			</tr>
+		</table>
+		
+		<input type="hidden" th:field="*{dishids}">
+		<input type="hidden" th:field="*{kondateid}">
+		<input type="submit" value="送信">
+	</form>
+	
+	<p><a th:href="@{/kondateList}">kondateListへ戻る</a></p>
+	
+</body>
+</html>

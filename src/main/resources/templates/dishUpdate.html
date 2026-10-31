@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title th:text="dish更新"></title>
+	<link rel="stylesheet" type="text/css" th:href="@{/style.css}" >
+</head>
+<body>
+	<div th:text="dish更新" class="title"></div>
+	<form th:action="@{/dishInsert}" th:object="${dish}" method="post">		
+<!--		<p>-->
+<!--			dishid-->
+<!--			<input type="text" th:field="*{dishid}" />-->
+<!--		</p>-->
+		<p>
+			dishname
+			<input type="text" th:field="*{dishname}" />
+		</p>
+		<p>
+			type
+			<input type="text" th:field="*{type}" />
+		</p>
+		<input type="hidden" th:field="*{dishid}">
+		<input type="submit" value="送信">
+	</form>
+	
+	<p><a th:href="@{/dishList}">dishListへ戻る</a></p>
+	
+</body>
+</html>

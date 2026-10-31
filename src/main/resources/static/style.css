@@ -16,3 +16,40 @@ span.err {
 img.img {
 	width: 20em;
 }
+
+
+.calSun {
+	color: red;
+	width: 10em;
+}
+.calSat {
+	color: blue;
+	width: 10em;
+}
+.calOther {
+	color: black;
+	width: 10em;
+}
+.calCell {
+	height: 6em;
+}
+
+.wd2 {
+	width: 2em;
+}
+.wd3 {
+	width: 3em;
+}
+.wd5 {
+	width: 5em;
+}
+.wd10 {
+	width: 10em;
+}
+.wd15 {
+	width: 15em;
+}
+.wd20 {
+	width: 20em;
+}
+

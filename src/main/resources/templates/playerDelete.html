@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" th:href="@{/style.css}">
+	<title th:text="player削除確認"></title>
+</head>
+<body>
+	<div th:text="player削除確認" class="title"></div>
+	<div th:object="${player}">
+		<p>
+			次のデータを削除してよろしいですか？
+		</p>
+		<p th:text="*{'playerid: ' + playerid}"></p>
+		<p th:text="*{'playername: ' + playername}"></p>
+		<p th:text="*{'type: ' + type}"></p>
+		<form th:action="@{/playerRemove}" method="post">
+			<input type="hidden" th:field="*{playerid}" />
+			<input type="hidden" th:field="*{teamid}" />
+			<input type="submit" value="削除" />
+		</form>
+	</div>
+	<p><a th:href="@{/teamDetail/{x}(x=${player.teamid})}">teamDetailへ戻る</a></p>
+	
+</body>
+</html>
+

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title th:text="kondateList"></title>
+	<link rel="stylesheet" type="text/css" th:href="@{/style.css}">
+</head>
+<body>
+	<div th:text="kondateList" class="title"></div>
+	
+	<table th:if="${list.size() > 0}" border="1">
+		<tr>
+			<th>kondateid</th>
+			<th>date</th>
+			<th>memo</th>
+			<th>dishids</th>
+			<th>詳細</th>
+			<th>更新</th>
+			<th>削除</th>
+		</tr>
+		<tr th:each="e:${list}">
+			<td th:text="${e.kondateid}"></td>
+			<td th:text="${e.date}"></td>
+			<td th:text="${e.memo}"></td>
+			<td th:text="${e.dishids}"></td>
+			<td><a th:href="@{/kondateDetail/{x}(x=${e.kondateid})}">表示</a></td>
+			<td><a th:href="@{/kondateUpdate/{x}(x=${e.kondateid})}">更新</a></td>
+			<td><a th:href="@{/kondateDelete/{x}(x=${e.kondateid})}">削除</a></td>
+		</tr>
+	</table>
+	
+	<p><a th:href="@{/kondateWrite}">kondate登録</a></p>
+	
+	<p><a th:href="@{/top}">トップへ戻る</a></p>
+	
+</body>
+</html>

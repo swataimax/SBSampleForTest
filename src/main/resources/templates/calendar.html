@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>カレンダー表示</title>
+	<link rel="stylesheet" type="text/css" th:href="@{/style.css}" />
+</head>
+
+<body>
+	<h1 th:text="${year} + '年' + ${month} + '月のカレンダー表示'"></h1>
+	<div>
+		<a th:href="@{/calendar(year=${prevYear}, month=${prevMonth})}">← 前の月</a>
+		|
+		<a th:href="@{/calendar(year=${nextYear}, month=${nextMonth})}">次の月 →</a>
+	</div>
+	
+	<table border="1">
+		<thead>
+			<tr>
+<!--				<th style="color: red;">日</th>-->
+				<th class="calSun">日</th>
+				<th class="calOther">月</th>
+				<th class="calOther">火</th>
+				<th class="calOther">水</th>
+				<th class="calOther">木</th>
+				<th class="calOther">金</th>
+				<th class="calSat">土</th>
+<!--				<th style="color: blue;">土</th>-->
+			</tr>
+		</thead>
+		<tbody>
+			<!-- カレンダー -->
+			<!-- 42個のセルを作成-->
+			<!-- cellIndex：0から41までの42個のセル-->
+			<!-- dateNum：表示する日付-->
+			<tr th:each="week : ${#numbers.sequence(1, 6)}">
+				<td th:each="dayOfWeek : ${#numbers.sequence(0, 6)}"
+				    th:with="cellIndex=${(week - 1) * 7 + dayOfWeek}, dateNum=${cellIndex - firstDayOfWeek + 1}"
+					class="calCell">
+					<!-- 空白セル -->
+					<div th:if="${cellIndex < firstDayOfWeek or dateNum > daysInMonth}">
+						&nbsp;
+					</div>
+					
+					<!-- 日付と支出 -->
+					<div th:if="${cellIndex >= firstDayOfWeek and dateNum <= daysInMonth}">
+						<span th:text="${dateNum}"></span><br>
+						
+						<!-- 表示 -->
+<!--						<span th:each="e : ${list}" th:if="${e.date.dayOfMonth == (dateNum)}"-->
+<!--							th:text="${e.category}">-->
+<!--						</span>-->
+						<span th:each="e : ${list}">
+							<span th:if="${e.date.dayOfMonth == (dateNum)}">
+								<span th:text="${e.title}"></span>
+							</span>
+						</span>
+					</div>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	
+	<br>
+
+	<p><a th:href="@{/top}">トップへ戻る</a></p>
+	
+</body>
+</html>

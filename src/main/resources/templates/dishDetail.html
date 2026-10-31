@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title th:text="dish詳細"></title>
+	<link rel="stylesheet" type="text/css" th:href="@{/style.css}">
+</head>
+<body>
+	<div th:text="dish詳細" class="title"></div>
+	<div th:object="${dish}">
+		<p th:text="*{'dishid: ' + dishid}"></p>
+		<p th:text="*{'type: ' + type}"></p>
+		<p th:text="*{'dishname: ' + dishname}"></p>
+	</div>
+	<p><a th:href="@{/dishList}">dishListへ戻る</a></p>
+	
+</body>
+</html>

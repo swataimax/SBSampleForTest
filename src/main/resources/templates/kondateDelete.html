@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" th:href="@{/style.css}">
+	<title th:text="kondate削除確認"></title>
+</head>
+<body>
+	<div th:text="kondate削除確認" class="title"></div>
+	<div th:object="${kondate}">
+		<p>
+			次のデータを削除してよろしいですか？
+		</p>
+		<p th:text="*{'kondateid: ' + kondateid}"></p>
+		<p th:text="*{'date: ' + date}"></p>
+		<p th:text="*{'memo: ' + memo}"></p>
+		<p th:text="*{'dishids: ' + dishids}"></p>
+		<form th:action="@{/kondateRemove}" method="post">
+			<input type="hidden" th:field="*{kondateid}" />
+			<input type="submit" value="削除" />
+		</form>
+	</div>
+	<p><a th:href="@{/kondateList}">kondateListへ戻る</a></p>
+</body>
+</html>
+

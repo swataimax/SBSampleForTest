@@ -11,9 +11,8 @@
 	<form th:action="@{/insert}" th:object="${form}" enctype="multipart/form-data" method="post">		
 		<p>
 			日　　付
-<!--			<input type="text" th:field="*{date}" />-->
-<!--			<span th:if="${#fields.hasErrors('date')}" th:errors="*{date}" class="err"></span>-->
-			<input type="date" th:field="*{date}" />
+			<input type="text" th:field="*{date}" />
+			<span th:if="${#fields.hasErrors('date')}" th:errors="*{date}" class="err"></span>
 		</p>
 		<p>
 			タイトル
@@ -32,15 +31,21 @@
 			<input type="radio" th:field="*{category}" value="仕事" />仕事
 			<input type="radio" th:field="*{category}" value="趣味" />趣味
 			<input type="radio" th:field="*{category}" value="その他" />その他
-<!--			<span th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="err"></span>-->
 		</p>
 		<p>
 			タ イ プ
-			<input type="checkbox" th:field="*{type}" value="簡易メモ" />メモ
+			<input type="checkbox" th:field="*{type}" value="メモ" />メモ
 			<input type="checkbox" th:field="*{type}" value="記録" />記録
 			<input type="checkbox" th:field="*{type}" value="temp" />temp
 			<input type="checkbox" th:field="*{type}" value="要保存" />要保存
-<!--			<span th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="err"></span>-->
+		</p>
+		<!--2026/06/20追加-->
+		<p>
+			タイプ２
+<!--			<input type="checkbox" th:field="*{type2}" value="メモ" />メモ-->
+<!--			<input type="checkbox" th:field="*{type2}" value="記録" />記録-->
+<!--			<input type="checkbox" th:field="*{type2}" value="temp" />temp-->
+<!--			<input type="checkbox" th:field="*{type2}" value="要保存" />要保存-->
 		</p>
 		<p>
 			ファイル

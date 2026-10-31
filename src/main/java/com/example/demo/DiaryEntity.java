@@ -45,6 +45,10 @@ public class DiaryEntity {
     @Column
     private String[] type;		// タイプ
     
+    // 2026/06/17追加
+    @Column
+    private Integer[] ids;		// 別テーブルのIDの配列
+    
     @Column
     private String filename; // filename
     

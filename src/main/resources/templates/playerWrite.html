@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title th:text="player登録"></title>
+	<link rel="stylesheet" type="text/css" th:href="@{/style.css}">
+</head>
+<body>
+	<div th:text="player登録" class="title"></div>
+	
+	<form th:action="@{/playerInsert}" th:object="${player}" method="post">
+		<p>
+			playername
+			<input type="text" th:field="*{playername}" />
+		</p>
+		<p>
+			type
+			<input type="text" th:field="*{type}" />
+		</p>
+		<input type="hidden" th:field="*{teamid}">
+		<input type="submit" value="送信" />
+	</form>
+	<p><a th:href="@{/teamDetail/{x}(x=${player.teamid})}">teamDetailへ戻る</a></p>
+</body>
+</html>

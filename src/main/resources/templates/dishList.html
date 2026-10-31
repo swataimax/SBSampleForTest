@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title th:text="dishList"></title>
+	<link rel="stylesheet" type="text/css" th:href="@{/style.css}">
+</head>
+<body>
+	<div th:text="dishList" class="title"></div>
+	
+	<table th:if="${list.size() > 0}" border="1">
+		<tr>
+			<th>dishid</th>
+			<th>dishname</th>
+			<th>type</th>
+			<th>kondateに追加</th>
+			<th>詳細</th>
+			<th>更新</th>
+			<th>削除</th>
+		</tr>
+		<tr th:each="e:${list}">
+			<td th:text="${e.dishid}"></td>
+			<td th:text="${e.dishname}"></td>
+			<td th:text="${e.type}"></td>
+			<td>
+				<label th:unless="${kondateid}">kondateに追加</label>
+				<a th:href="@{/dishAdd/{x}/{y}(x=${e.dishid},y=${kondateid})}" th:if="${kondateid}">kondateに追加</a>
+			</td>
+			<td>
+				<label th:if="${kondateid}">kondateに追加</label>
+				<a th:href="@{/dishDetail/{x}(x=${e.dishid})}" th:unless="${kondateid}">表示</a>
+			</td>
+			<td>
+				<label th:if="${kondateid}">kondateに追加</label>
+				<a th:href="@{/dishUpdate/{x}(x=${e.dishid})}" th:unless="${kondateid}">更新</a>
+			</td>
+			<td>
+				<label th:if="${kondateid}">kondateに追加</label>
+				<a th:href="@{/dishDelete/{x}(x=${e.dishid})}" th:unless="${kondateid}">削除</a>
+			</td>
+		</tr>
+	</table>
+	
+	<p><a th:href="@{/dishWrite}">dish登録</a></p>
+	
+	<p><a th:href="@{/top}">トップへ戻る</a></p>
+	
+	<hr>
+	<p><span th:text="${'kondateid: ' + kondateid}"></span></p>
+	<hr>
+	
+</body>
+</html>

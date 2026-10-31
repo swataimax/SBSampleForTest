@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title th:text="delivery"></title>
+	<link rel="stylesheet" type="text/css" th:href="@{/style.css}">
+</head>
+<body>
+	<div th:text="delivery" class="title"></div>
+	
+	<!--206/06/21-->
+	<p><a th:href="@{/delivery/{x}/{y}(x=${a},y=${b})}">値の受け渡し</a></p>
+	<p><button type="button" th:onclick="|location.href='/delivery/__${a}__/__${b}__'|">値の受け渡し</button></p>
+	<p><input type="button" th:onclick="|location.href='/delivery/__${a}__/__${b}__'|" value="値の受け渡し"></p>
+	<p th:text="'a=' + ${a}"></p>
+	<p th:text="'b=' + ${b}"></p>
+<!--	<p><input type="button" value="値の受け渡し（ボタン）">値の受け渡し（ボタン）</p>-->
+	
+	<hr>
+	<p><a th:href="@{/top}">トップへ戻る</a></p>
+	
+</body>
+</html>
+
+
+<!--
+	
+	https://zenn.dev/luvmini511/articles/58c1a66a42207b
+	HTMLでボタンを作るとき使うべき要素は <input>？<button>？
+	button要素はinput要素の進化版
+	
+	https://qiita.com/SUGISHIA/items/d4d8b48be48767c17815
+	inputタグ、buttonタグでの画面遷移の記述について
+	<button onclick="location.href='・・・'">・・・</button>
+	
+	https://qiita.com/Hamoto/items/4e283abbbf8d27d177e1
+	Thymeleafで動的なonclickを書きたい
+	「 |式の内容| 」（リテラル置換）
+	
+-->
