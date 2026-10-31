@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title th:text="top"></title>
+	<link rel="stylesheet" type="text/css" th:href="@{/style.css}">
+</head>
+<body>
+	<div th:text="top" class="title"></div>
+	
+	<form th:action="@{/bulkdelete}" method="POST">
+		<input type="submit" value="一括削除">
+		<!-- レコード取得件数が0件のときは、テーブルごと表示しない -->
+		<table th:if="${list.size() > 0}">
+			<tr>
+				<th></th>
+				<th>日付</th>
+				<th>タイトル</th>
+				<th>詳細</th>
+				<th>更新</th>
+				<th>削除</th>
+			</tr>
+			<tr th:each="e:${list}">
+				<td>
+					<input type="checkbox" th:name="deleteIds" th:value="${e.id}">
+				</td>
+				<td th:text="${e.date}"></td>
+				<td th:text="${e.title}"></td>
+				<td><a th:href="@{/detail/{x}(x=${e.id})}">表示</a></td>
+				<td><a th:href="@{/update/{x}(x=${e.id})}">更新</a></td>
+				<td><a th:href="@{/delete/{x}(x=${e.id})}">削除</a></td>
+			</tr>
+			
+		</table>
+	</form>
+	
+	<p><a th:href="@{/top}">トップへ戻る</a></p>
+	
+</body>
+</html>
+
+<!--2026/10/25-->
+

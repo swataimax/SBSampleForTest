@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title th:text="top"></title>
+	<link rel="stylesheet" type="text/css" th:href="@{/style.css}">
+</head>
+<body>
+	<div th:text="top" class="title"></div>
+	<form th:action="@{/sort1}" method="POST">
+		<p>
+			並び替え
+			<select th:name="jun">
+				<option value="">--</option>
+				<option value="昇順" th:selected="${'昇順' == jun}">昇順</option>
+				<option value="降順" th:selected="${'降順' == jun}">降順</option>
+			</select>
+			<input type="submit" value="並び替え">
+			<span th:text="${jun}"></span>
+		</p>
+	</form>
+	
+	<form th:action="@{/sort2}" method="POST" th:object="${sortForm}">
+		<p>
+			並び替え
+			<select th:field="*{jun2}">
+				<option value="">--</option>
+				<option value="昇順">昇順</option>
+				<option value="降順">降順</option>
+			</select>
+			<input type="submit" value="並び替え">
+		</p>
+	</form>
+	
+	<form th:action="@{/sort3}" method="POST">
+		<p>
+			並び替え
+			<select th:name="sortColumn">
+				<option value="id"    th:selected="${'id' == sortColumn}">id</option>
+				<option value="date"  th:selected="${'date' == sortColumn}">date</option>
+				<option value="title" th:selected="${'title' == sortColumn}">title</option>
+				<option value="memo"  th:selected="${'memo' == sortColumn}">memo</option>
+			</select>
+			<select th:name="sortDirection">
+				<option value="--">--</option>
+				<option value="昇順" th:selected="${'昇順' == sortDirection}">昇順</option>
+				<option value="降順" th:selected="${'降順' == sortDirection}">降順</option>
+			</select>
+			<input type="submit" value="並び替え">
+		</p>
+	</form>
+	
+	<hr>
+	
+	<table border="1">
+		<tr>
+			<th>日付</th>
+			<th>タイトル</th>
+			<th>詳細</th>
+			<th>更新</th>
+			<th>削除</th>
+		</tr>
+		<tr th:each="e:${list}">
+			<td th:text="${e.date}"></td>
+			<td th:text="${e.title}"></td>
+			<td><a th:href="@{/detail/{x}(x=${e.id})}">表示</a></td>
+			<td><a th:href="@{/update/{x}(x=${e.id})}">更新</a></td>
+			<td><a th:href="@{/delete/{x}(x=${e.id})}">削除</a></td>
+		</tr>
+	</table>
+	
+	<hr>
+	
+	<p><a th:href="@{/top}">トップへ戻る</a></p>
+	
+</body>
+</html>
+
+<!--2026/10/24-->
+

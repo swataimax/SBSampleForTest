@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title th:text="top"></title>
+	<link rel="stylesheet" type="text/css" th:href="@{/style.css}">
+</head>
+<body>
+	<div th:text="top" class="title"></div>
+	
+	<hr>
+	
+	<form th:action="@{/pagingsort}" method="POST">
+		<p>
+			並び替え
+			<select th:name="sortColumn">
+				<option value="id"    th:selected="${'id' == sortColumn}">id</option>
+				<option value="date"  th:selected="${'date' == sortColumn}">date</option>
+				<option value="title" th:selected="${'title' == sortColumn}">title</option>
+				<option value="memo"  th:selected="${'memo' == sortColumn}">memo</option>
+			</select>
+			<select th:name="sortDirection">
+				<option value="--">--</option>
+				<option value="昇順" th:selected="${'昇順' == sortDirection}">昇順</option>
+				<option value="降順" th:selected="${'降順' == sortDirection}">降順</option>
+			</select>
+			<input type="submit" value="並び替え">
+		</p>
+	</form>
+	
+	<hr>
+	
+	<div>
+		<span th:if="${list.first}"
+			th:utext="'<< 最初へ'"></span>
+		<a th:unless="${list.first}"
+			th:href="@{/pagingsort1?page=0}"
+			th:utext="'<< 最初へ'"></a>
+		<span th:if="${list.first}"
+			th:utext="'< 前へ'"></span>
+		<a th:unless="${list.first}"
+			th:href="@{/pagingsort1?page={p}(p=${list.number} - 1)}"
+			th:utext="'< 前へ'"></a>
+		<span th:if="${list.last}"
+			th:utext="'次へ >'"></span>
+		<a th:unless="${list.last}"
+			th:href="@{/pagingsort1?page={p}(p=${list.number} + 1)}"
+			th:utext="'次へ >'"></a>
+		<span th:if="${list.last}"
+			th:utext="'最後へ >>'"></span>
+		<a th:unless="${list.last}"
+			th:href="@{/pagingsort1?page={p}(p=${list.totalPages} - 1)}"
+			th:utext="'最後へ >>'"></a>
+	</div>
+	
+	<hr>
+	
+	<p>
+		ページ番号表示　
+		<span th:text="(${list.number} + 1) + ' / ' + ${list.totalPages}"></span>
+	</p>
+	
+	<table border="1">
+		<tr>
+			<th>日付</th>
+			<th>タイトル</th>
+			<th>詳細</th>
+			<th>更新</th>
+			<th>削除</th>
+		</tr>
+		<tr th:each="e:${list}">
+			<td th:text="${e.date}"></td>
+			<td th:text="${e.title}"></td>
+			<td><a th:href="@{/detail/{x}(x=${e.id})}">表示</a></td>
+			<td><a th:href="@{/update/{x}(x=${e.id})}">更新</a></td>
+			<td><a th:href="@{/delete/{x}(x=${e.id})}">削除</a></td>
+		</tr>
+	</table>
+	
+	<hr>
+	
+	<p><a th:href="@{/top}">トップへ戻る</a></p>
+	
+	
+</body>
+</html>
+
+<!--2026/10/25-->

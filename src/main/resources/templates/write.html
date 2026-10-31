@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title th:text="登録"></title>
+	<link rel="stylesheet" type="text/css" th:href="@{/style.css}">
+</head>
+<body>
+	<div th:text="登録" class="title"></div>
+<!--	<form th:action="@{/insert}" th:object="${form}" method="post">-->
+	<form th:action="@{/insert}" th:object="${form}" enctype="multipart/form-data" method="post">
+		<p>
+			日　　付
+<!--			<input type="text" th:field="*{date}" />-->
+<!--			<span th:if="${#fields.hasErrors('date')}" th:errors="*{date}" class="err"></span>-->
+			<input type="date" th:field="*{date}" />
+		</p>
+		<p>
+			タイトル
+			<input type="text" th:field="*{title}" />
+			<span th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="err"></span>
+		</p>
+		<p>
+			メ　　モ
+			<textarea th:field="*{memo}" cols="20" rows="5"></textarea>
+			<span th:if="${#fields.hasErrors('memo')}" th:errors="*{memo}" class="err"></span>
+		</p>
+		
+		<p>
+			カテゴリ
+			<input type="radio" th:field="*{category}" value="個人" />個人
+			<input type="radio" th:field="*{category}" value="仕事" />仕事
+			<input type="radio" th:field="*{category}" value="趣味" />趣味
+			<input type="radio" th:field="*{category}" value="その他" />その他
+<!--			<span th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="err"></span>-->
+		</p>
+		<p>
+			タ イ プ
+			<input type="checkbox" th:field="*{type}" value="簡易メモ" />メモ
+			<input type="checkbox" th:field="*{type}" value="記録" />記録
+			<input type="checkbox" th:field="*{type}" value="temp" />temp
+			<input type="checkbox" th:field="*{type}" value="要保存" />要保存
+<!--			<span th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="err"></span>-->
+		</p>
+		
+		<p>
+			ファイル
+			<input type="file" name="file" accept="image/*" required />
+			<!-- requiredにしているのでファイル選択が必須 -->
+			<!-- https://developer.mozilla.org/ja/docs/Web/HTML/Reference/Attributes/accept -->
+			<!-- accept 属性は、選択されたファイルの種別を検証するものではありません。 -->
+		</p>
+		
+		<input type="submit" value="送信" />
+	</form>
+	<p><a th:href="@{/top}">トップへ戻る</a></p>
+</body>
+</html>

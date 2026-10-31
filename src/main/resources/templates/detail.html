@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css"
+                                                    th:href="@{/style.css}">
+</head>
+<body>
+    <div th:text="詳細" class="title"></div>
+    <div th:object="${form}">
+<!--        <p th:text="*{'日　　付:' + date}"></p>-->
+		<p th:text="'日　　付:' + *{date}"></p>
+        <p th:text="*{'タイトル:' + title}"></p>
+		<p th:text="*{'カテゴリ:' + category}"></p>
+		<p th:text="*{'タ イ プ:' + type}"></p>
+        <p th:text="*{'メ　　モ:' + memo}"></p>
+		<img th:src="*{'/img/' + filename}" class="img">
+    </div>
+    <a th:href="@{/top}">トップへ戻る</a>
+</body>
+</html>

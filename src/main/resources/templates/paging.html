@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title th:text="top"></title>
+	<link rel="stylesheet" type="text/css" th:href="@{/style.css}">
+</head>
+<body>
+	<div th:text="top" class="title"></div>
+<!--	<form th:action="@{/search}" method="GET">-->
+<!--		<p>タイトル検索<input type="text" name="keyword">-->
+<!--			<input type="submit" value="検索">-->
+<!--		</p>-->
+<!--	</form>-->
+	
+	<hr>
+	
+	<div>
+		<span th:if="${list.first}"
+			th:text="最初ページ"></span>
+		<a th:unless="${list.first}"
+			th:href="@{/paging?page=0}"
+			th:text="最初ページ"></a>
+		<span th:if="${list.first}"
+			th:text="前ページ"></span>
+<!--	<a th:if="${not list.first}" -->
+		<a th:unless="${list.first}"
+			th:href="@{/paging?page={p}(p=${list.number} - 1)}"
+			th:text="前ページ"></a>
+		<span th:if="${list.last}"
+			th:text="次ページ"></span>
+		<a th:unless="${list.last}"
+			th:href="@{/paging?page={p}(p=${list.number} + 1)}"
+			th:text="次ページ"></a>
+		<span th:if="${list.last}"
+			th:text="最終ページ"></span>
+		<a th:unless="${list.last}"
+			th:href="@{/paging?page={p}(p=${list.totalPages} - 1)}"
+			th:text="最終ページ"></a>
+	</div>
+	
+	<hr>
+	
+	<p>
+		ページ番号表示　
+		<span th:text="(${list.number} + 1) + ' / ' + ${list.totalPages}"></span>
+	</p>
+	
+<!--	<table th:if="${list.size() > 0}">-->
+	<table border="1">
+		<tr>
+			<th>日付</th>
+			<th>タイトル</th>
+			<th>詳細</th>
+			<th>更新</th>
+			<th>削除</th>
+		</tr>
+		<tr th:each="e:${list}">
+			<td th:text="${e.date}"></td>
+			<td th:text="${e.title}"></td>
+			<td><a th:href="@{/detail/{x}(x=${e.id})}">表示</a></td>
+			<td><a th:href="@{/update/{x}(x=${e.id})}">更新</a></td>
+			<td><a th:href="@{/delete/{x}(x=${e.id})}">削除</a></td>
+		</tr>
+	</table>
+	
+	<hr>
+	
+	<div>
+		<span th:if="${list.first}"
+			th:utext="'<< 最初へ'"></span>
+		<a th:unless="${list.first}"
+			th:href="@{/paging?page=0}"
+			th:utext="'<< 最初へ'"></a>
+		<span th:if="${list.first}"
+			th:utext="'< 前へ'"></span>
+		<a th:unless="${list.first}"
+			th:href="@{/paging?page={p}(p=${list.number} - 1)}"
+			th:utext="'< 前へ'"></a>
+		<span th:if="${list.last}"
+			th:utext="'次へ >'"></span>
+		<a th:unless="${list.last}"
+			th:href="@{/paging?page={p}(p=${list.number} + 1)}"
+			th:utext="'次へ >'"></a>
+		<span th:if="${list.last}"
+			th:utext="'最後へ >>'"></span>
+		<a th:unless="${list.last}"
+			th:href="@{/paging?page={p}(p=${list.totalPages} - 1)}"
+			th:utext="'最後へ >>'"></a>
+	</div>
+	
+	<hr>
+	
+	<p><a th:href="@{/top}">トップへ戻る</a></p>
+	
+	
+</body>
+</html>
+
+<!--2026/06/16-->

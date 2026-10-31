@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title th:text="top"></title>
+	<link rel="stylesheet" type="text/css" th:href="@{/style.css}">
+</head>
+<body>
+	<div th:text="top" class="title"></div>
+	<form th:action="@{/search}" method="GET">
+<!--		<p>タイトル検索<input type="text" name="keyword">-->
+			<!--↓2026/10/25 検索欄の初期値追加 -->
+<!--		<p>タイトル検索<input type="text" th:field="${keyword}">-->
+		<!-- ↑これではうまくいかず -->
+		<p>タイトル検索<input type="text" name="keyword" th:value="${keyword}">
+		<!-- ↑これでうまくいった -->
+			<input type="submit" value="検索">
+		</p>
+	</form>
+	
+	<!-- レコード取得件数が0件のときは、テーブルごと表示しない -->
+	<table th:if="${list.size() > 0}">
+		<tr>
+			<th>日付</th>
+			<th>タイトル</th>
+			<th>詳細</th>
+			<th>更新</th>
+			<th>削除</th>
+		</tr>
+		<tr th:each="e:${list}">
+			<td th:text="${e.date}"></td>
+			<td th:text="${e.title}"></td>
+			<td><a th:href="@{/detail/{x}(x=${e.id})}">表示</a></td>
+			<td><a th:href="@{/update/{x}(x=${e.id})}">更新</a></td>
+			<td><a th:href="@{/delete/{x}(x=${e.id})}">削除</a></td>
+		</tr>
+	</table>
+	<p><a th:href="@{/write}">登録</a></p>
+	
+	<!--2026/06/16-->
+	<p><a th:href="@{/paging}">ページング</a></p>
+	
+	<!--2026/10/24-->
+	<p><a th:href="@{/sort}">ソート（並び替え）</a></p>
+	
+	<!--2026/06/25-->
+	<p><a th:href="@{/pagingsort}">ページング・ソート</a></p>
+	
+	<!--2026/06/25-->
+	<p><a th:href="@{/bulkdelete}">一括削除</a></p>
+	
+	<!--2026/06/16-->
+	<p><a th:href="@{/csv}">CSVアップロード・ダウンロード</a></p>
+	
+<!--	<form th:action="@{/download2}" method="post" enctype="multipart/form-data">-->
+<!--		<label>ダウンロードするフォルダを選択：</label>-->
+<!--		<input type="file" name="file" />-->
+<!--		<input type="submit" value="フォルダ選択" class="submit"/>-->
+<!--	</form>-->
+
+<!--	<form th:action="@{/download}" method="GET">-->
+<!--		<div th:object="${form}"></div>-->
+<!--		<input type="hidden" th:field="*{id}">-->
+<!--		<input type="hidden" th:field="*{date}">-->
+<!--		<input type="hidden" th:field="*{title}">-->
+<!--		<input type="hidden" th:field="*{memo}">-->
+<!--		<input type="hidden" th:field="*{category}">-->
+<!--		<input type="hidden" th:field="*{type}">-->
+<!--		<input type="submit" value="ダウンロード">-->
+<!--	</form>-->
+	
+	<p><a th:href="@{/top}">トップへ戻る</a></p>
+	
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" th:href="@{/style.css}">
+	<title th:text="削除確認"></title>
+</head>
+<body>
+	<div th:text="削除確認" class="title"></div>
+	<div th:object="${form}">
+		<p>
+			次のデータを削除してよろしいですか？
+		</p>
+		<p th:text="*{'日　　付:' + date}"></p>
+		<p th:text="*{'タイトル:' + title}"></p>
+		<p th:text="*{'メ　　モ:' + memo}"></p>
+		<p>ファイル:<img th:src="*{'/img/' + filename}" class="img"></p>
+		<form th:action="@{/remove}" method="post">
+			<!-- データのIDをhiddenでコントローラーに送る -->
+			<input type="hidden" th:field="*{id}" />
+			<input type="hidden" th:field="*{filename}" />
+			<input type="submit" value="削除" />
+		</form>
+	</div>
+	<p><a th:href="@{/}">トップへ戻る</a></p>
+</body>
+</html>
+
